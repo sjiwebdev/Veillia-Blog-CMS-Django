@@ -1,0 +1,9 @@
+[project]
+name = "veillia-blog-cms-django"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "django>=6.1.1",
+    "djangorestframework>=3.18.1",
+    "feedparser>=6.0.14",
+]
