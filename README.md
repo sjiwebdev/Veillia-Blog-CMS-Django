@@ -124,9 +124,23 @@ cp .env.example .env                 # Windows : Copy-Item .env.example .env
 python manage.py migrate
 python manage.py seed_blog           # CMS de démonstration (idempotent)
 python manage.py seed_feeds          # catalogue RSS P0 (idempotent)
-python manage.py fetch_feeds --all   # première collecte (réseau requis)
+python manage.py fetch_feeds --all   # première collecte (bonne connexion internet requise)
 python manage.py runserver
 ```
+
+# Ou avec Commandes uv
+```bash
+uv run python -m venv .venv
+uv run source .venv/bin/activate            
+uv run python -m pip install -r requirements.txt
+uv run cp .env.example .env
+uv run python manage.py migrate
+uv run python manage.py seed_blog           
+uv run python manage.py seed_feeds          
+uv run python manage.py fetch_feeds --all   
+uv run python manage.py runserver
+```
+
 
 | URL | Rôle |
 | --- | --- |
@@ -240,14 +254,14 @@ Table complète, cron, checklist de déploiement et dépannage :
 - `fetch_feeds` n'explore que les flux **dûs** ; chaque tentative crée un
   `FetchLog` ; `mark_success` remet `failure_count` à 0 et passe `pending → valid`.
 - Après **5 échecs** consécutifs : `validation_status=invalid`,
-  `is_active=False` — le flux sort du circuit jusqu'à revue dans l'admin
+  `is_active=False`:le flux sort du circuit jusqu'à revue dans l'admin
   (action « Marquer comme valide »).
 - Validation sur les 5 premières entrées (lien/GUID + date) ; une entrée sans
   URL canonique ni GUID est comptée `skipped`.
 - Aucun scheduler applicatif : cron machine (`*/15` conseillé) appelant
   `fetch_feeds`.
 - Volumes observés : **874 articles** ingérés depuis Hugging Face au premier
-  passage ; TDS/OpenAI peuvent expirer (timeout) — backoff appliqué.
+  passage ; TDS/OpenAI peuvent expirer (timeout) d'ou backoff appliqué.
 
 ## Sécurité et qualité
 
@@ -260,7 +274,7 @@ Table complète, cron, checklist de déploiement et dépannage :
 - Journal d'audit sur les transitions éditoriales et modérations.
 - WhiteNoise en prod (statiques manifeste), collecte RSS identifiée et
   respectueuse (`robots_policy`, ETag/304).
-- `manage.py check` : **0 problème**.
+- `manage.py check` : **Resultat attendu: 0 problème**.
 
 ## Tests
 
@@ -315,3 +329,11 @@ En résumé (détail et remèdes dans [`docs/operations.md`](docs/operations.md)
 - La description OpenAPI annonce encore « phase 1 » (la surface veille est
   documentée par `docs/api.md`).
 - `veillia_agent` n'existe pas encore (phase 3).
+
+# Contributeurs du projets (membres du groupe)
+
+Ce projet est mene de bout en bout par une equipe de 3 etudiants en Master 2 Data Science de Saint Jean Ingenieur. Les pseudo de commits de chacun sont mentionnes entre parenthese
+
+- NGOUMTSOP TEUZEM Yeiayel Chavaquiah (@teuzem pour commit sur main et @yeiayel branche de travail)
+- KAMGUENG YOLONG Ariane Sonita (@Ariane-git)
+- TONFACK MATENGUE Elvira Brenda (MatengueElvira)
