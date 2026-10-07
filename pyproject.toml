@@ -1,0 +1,20 @@
+[project]
+name = "veillia-blog-cms-django"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "teuzem", email = "digitalproservicesofficiel@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "django>=5.2.17",
+    "djangorestframework>=3.18.1",
+]
+
+[project.scripts]
+veillia-blog-cms-django = "veillia_blog_cms_django:main"
+
+[build-system]
+requires = ["uv_build>=0.12.9,<0.13.0"]
+build-backend = "uv_build"

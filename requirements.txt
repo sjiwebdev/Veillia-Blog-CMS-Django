@@ -1,0 +1,26 @@
+# VEILLIA: dépendances Python (phase 1 : CMS de blog, phase 2 : veille RSS, phase 3: Agent IA RAG)
+# Installation : python -m pip install -r requirements.txt
+
+Django==5.2.17
+djangorestframework==3.18.1
+django-filter==26.2
+drf-spectacular==0.30.0
+
+# Rendu Markdown + assainissement HTML des billets
+Markdown==3.11
+bleach==6.4.0
+
+# Images (featured images générées par seed_blog, avatars)
+Pillow==11.0.0
+
+# Flux RSS (utilisé dès la phase 2 par veillia_aggregator)
+feedparser==6.0.14
+
+# Configuration par variables d'environnement (.env)
+python-dotenv==1.2.4
+
+# Fichiers statiques en production (manifest compressé)
+whitenoise==6.12.0
+
+# Base de données production (bascule avec DB_ENGINE=postgres)
+# psycopg[binary]==3.2.3
