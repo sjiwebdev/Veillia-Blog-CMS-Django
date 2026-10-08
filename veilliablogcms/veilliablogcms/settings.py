@@ -71,14 +71,12 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "core.middleware.PermanentRedirectMiddleware",
-    "core.middleware.RequestTimingMiddleware",
 ]
 
 if not DEBUG:
     MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
 
-ROOT_URLCONF = "config.urls"
+ROOT_URLCONF = "veilliablogcms.urls"
 
 TEMPLATES = [
     {
@@ -96,7 +94,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "config.wsgi.application"
+WSGI_APPLICATION = "veilliablogcms.wsgi.application"
 
 # Base de données
 
@@ -160,12 +158,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Comptes
 
-AUTH_USER_MODEL = "core.User"
-LOGIN_URL = "veilliablog:login"
-LOGIN_REDIRECT_URL = "veilliablog:home"
-LOGOUT_REDIRECT_URL = "veilliablog:home"
+#AUTH_USER_MODEL = "core.User"
+#LOGIN_URL = "veilliablog:login"
+#LOGIN_REDIRECT_URL = "veilliablog:home"
+#LOGOUT_REDIRECT_URL = "veilliablog:home"
 
-SITE_ID = 1
+#SITE_ID = 1
 
 # Identité du site
 
